@@ -88,13 +88,6 @@ class HalfAdder(gate: Gate){
             sum = false
         }
         else{
-            */
-/*
-            if(carry == false)  // 기존 비트 A,B의 연산결과 캐리가 존재하는 경우를 제외외
-               carry = false
-               *//*
-
-
             sum = gate.OR(bitA, bitB)
         }
 
