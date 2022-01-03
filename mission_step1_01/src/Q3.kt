@@ -10,7 +10,7 @@ fun main(args: Array<String>){
     val halfAdder = HalfAdder(gate)
     val fullAdder = FullAdder(halfAdder)
 
-    // 두 배열 모두 8비트 기준
+    // 두 boolean 배열 모두 8비트 기준
     print("byteA 입력 : ")
     var byteA = br.readLine().split(' ').map{ it.toInt() == 1 }  // 입력은 정수형으로 1 = true, 0 = false
 
