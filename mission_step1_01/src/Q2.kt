@@ -1,3 +1,4 @@
+/*
 // 2 - 반쪽덧셈과 전체덧셈
 
 // 1. 입력받기
@@ -79,6 +80,7 @@ class HalfAdder(gate: Gate){
     var sum = false
     var carry = false
 
+
     fun halfAdd(bitA: Boolean, bitB: Boolean){
 
         if(this.gate.AND(bitA, bitB)){ // true, true 인 경우 캐리 발생
@@ -86,10 +88,12 @@ class HalfAdder(gate: Gate){
             sum = false
         }
         else{
-            /*
+            */
+/*
             if(carry == false)  // 기존 비트 A,B의 연산결과 캐리가 존재하는 경우를 제외외
                carry = false
-               */
+               *//*
+
 
             sum = gate.OR(bitA, bitB)
         }
@@ -116,3 +120,4 @@ class FullAdder(halfAdder: HalfAdder){
 
 }
 
+*/
