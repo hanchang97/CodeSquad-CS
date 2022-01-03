@@ -1,4 +1,6 @@
+/*
 // 1 - 디지털 논리 게이트 함수 구현
+
 fun main(args: Array<String>){
     var gate = Gate()
 
@@ -6,7 +8,6 @@ fun main(args: Array<String>){
     println(gate.OR(true, false))
     println(gate.NAND(true, true))
     println(gate.XOR(true, false))
-
 }
 
 class Gate(){
@@ -27,3 +28,5 @@ class Gate(){
         return !(first == second)
     }
 }
+
+*/
