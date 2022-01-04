@@ -1,3 +1,4 @@
+/*
 // 2 - 반쪽덧셈과 전체덧셈
 
 // 1. 입력받기
@@ -96,6 +97,7 @@ class FullAdder(halfAdder: HalfAdder){
 
     var halfAdder = halfAdder
 
+    // 전가산기 논리 회로도 흐름에 따라 구현
     fun fullAdd(bitA:Boolean, bitB:Boolean, carryIn:Boolean) : MutableList<Boolean>{
         var bitResult = halfAdder.halfAdd(bitA, bitB) // 두 개의 입력 비트 연산 결과
         var carryInResult = halfAdder.halfAdd(carryIn, bitResult[1]) // 입력으로 받은 캐리와 위 연산 결과로 나온 sum을 계산해준다
@@ -127,3 +129,4 @@ fun fullAdderTest(){
     println("----- fullAdderTest end -----")
 }
 
+*/
