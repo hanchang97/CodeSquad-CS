@@ -1,3 +1,4 @@
+/*
 // 3 - 1바이트 덧셈기
 
 import java.io.BufferedReader
@@ -100,3 +101,9 @@ class FullAdder(halfAdder: HalfAdder){
     }
 }
 
+
+// 1. Test함수 만들기 -> 여기선 print 사용 ok
+// 2. 로직함수에서는 print 사용 x
+// 3. sum, carry 함수로 따로 빼기
+
+*/

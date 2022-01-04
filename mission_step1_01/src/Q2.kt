@@ -80,7 +80,6 @@ class HalfAdder(gate: Gate){
     var sum = false
     var carry = false
 
-
     fun halfAdd(bitA: Boolean, bitB: Boolean){
 
         if(this.gate.AND(bitA, bitB)){ // true, true 인 경우 캐리 발생
