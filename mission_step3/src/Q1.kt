@@ -1,3 +1,4 @@
+/*
 fun main(args : Array<String>){
 
     val generator = Generator()
@@ -58,4 +59,4 @@ class Generator(){
         return true
     }
 
-}
+}*/
