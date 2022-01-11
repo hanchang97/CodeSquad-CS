@@ -28,7 +28,6 @@ fun startEdit(){
                 var insertIdx = command.nextToken().toInt()
 
                 //println("삽입할 id : ${insertId}, 삽입 위치 : ${insertIdx}")
-
                 if(insertIdx >= 0)
                     videoLinkedList.insertData(insertId, insertIdx)
                 else
@@ -158,7 +157,6 @@ class VideoLinkedList(videoDataList: MutableList<VideoData>){
     }
 
     ///////////////////
-
     fun checkExist(id: String): Boolean{
         videoDataList.forEach {
             if(id.equals(it.id))
@@ -191,7 +189,6 @@ class VideoLinkedList(videoDataList: MutableList<VideoData>){
         }
         return null
     }
-
 }
 
 class VideoData(id: String, playTime: Int, idNum: Int ){
@@ -215,7 +212,6 @@ class Generator(){
     var idNum = 1
     var idList = mutableListOf<String>()
     var videoDataList = mutableListOf<VideoData>()
-
 
     fun generate(dataCount: Int){
         for(count in 1..dataCount){
@@ -250,5 +246,4 @@ class Generator(){
         idList.add(id)
         return true
     }
-
 }
