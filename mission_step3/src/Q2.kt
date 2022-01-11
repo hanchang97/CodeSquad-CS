@@ -58,18 +58,21 @@ class VideoLinkedList(videoDataList: MutableList<VideoData>){
     var Head = VideoData("head", -1, -1)  // 가장 처음이 되는 노드를 Head로 두었다(출력은 무시)
 
     // 마지막 다음에 삽입하기
-    fun addData(addId: String){ // add할 id 전달받기
+    fun addData(addId: String){ // add할 id 전달받기,  add에서 이미 추가되어 있는 것은 추가 안되게 막기!!
         if(checkExist(addId)){
+            if(!checkIsExistInLinkedList(addId)){
+                var node : VideoData? = Head
+                // Head에서 마지막 노드까지 이동
+                while(node?.nextData != null){
+                    node = node.nextData
+                }
 
-            var node : VideoData? = Head
-            // Head에서 마지막 노드까지 이동
-            while(node?.nextData != null){
-                node = node.nextData
+                node?.nextData = getVideoById(addId)
+                node?.nextData?.preData = node  // 새로 추가된 노드의 전 노드는 기존의 마지막 노드!
+                printCurrentState()
             }
-
-            node?.nextData = getVideoById(addId)
-            node?.nextData?.preData = node  // 새로 추가된 노드의 전 노드는 기존의 마지막 노드!
-            printCurrentState()
+            else
+                printAlreadyExistError()
         }
         else
             printNotExistError()
@@ -95,31 +98,35 @@ class VideoLinkedList(videoDataList: MutableList<VideoData>){
 
     fun insertData(insertId: String, insertIdx: Int){
         if(checkExist(insertId)){
-            var node : VideoData? = Head
-            var idxCount = 0
-            var isInsertIdxBigger = true
+            if(!checkIsExistInLinkedList(insertId)) {
+                var node: VideoData? = Head
+                var idxCount = 0
+                var isInsertIdxBigger = true
 
-            while(node?.nextData != null){
-                if(idxCount == insertIdx){
-                    var insertNode = getVideoById(insertId)
-                    insertNode?.preData = node
-                    insertNode?.nextData = node.nextData
+                while (node?.nextData != null) {
+                    if (idxCount == insertIdx) {
+                        var insertNode = getVideoById(insertId)
+                        insertNode?.preData = node
+                        insertNode?.nextData = node.nextData
 
-                    node?.nextData?.preData = insertNode
-                    node?.nextData = insertNode
-                    isInsertIdxBigger = false
-                    break
+                        node?.nextData?.preData = insertNode
+                        node?.nextData = insertNode
+                        isInsertIdxBigger = false
+                        break
+                    }
+                    node = node.nextData
+                    idxCount++
                 }
-                node = node.nextData
-                idxCount++
-            }
 
-            if(isInsertIdxBigger){ // 순서값이 현재 연결 리스트 데이터 개수보다 같거나 많은 경우 -> 맨뒤에 삽입
-                node?.nextData = getVideoById(insertId)
-                node?.nextData?.preData = node
-            }
+                if (isInsertIdxBigger) { // 순서값이 현재 연결 리스트 데이터 개수보다 같거나 많은 경우 -> 맨뒤에 삽입
+                    node?.nextData = getVideoById(insertId)
+                    node?.nextData?.preData = node
+                }
 
-            printCurrentState()
+                printCurrentState()
+            }
+            else
+                printAlreadyExistError()
         }
         else
             printNotExistError()
@@ -178,6 +185,10 @@ class VideoLinkedList(videoDataList: MutableList<VideoData>){
 
     fun printNotExistError(){
         println("존재하지 않는 데이터입니다.")
+    }
+
+    fun printAlreadyExistError(){
+        println("현재 연결 리스트에 존재하는 데이터입니다.")
     }
 
     fun getVideoById(id: String) : VideoData?{
