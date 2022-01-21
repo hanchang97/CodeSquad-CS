@@ -6,38 +6,27 @@ class ClassifierAlpha {
         fun sum(factors: Set<Int>) = factors.fold(0){ total, n -> total + n}
     }
 
-    fun factors(number: Int) : Set<Int> =
-        HashSet<Int>().apply{
-            for (pod in 1..sqrt(number.toDouble()).toInt()) {
-                if (number % pod == 0) {
+    val isPrime = {num : Int -> num > 1 && factors(num) == mutableSetOf(1, num)}
+    val factors = {num: Int ->
+        HashSet<Int>().apply {
+            for (pod in 1..sqrt(num.toDouble()).toInt()) {
+                if (num % pod == 0) {
                     add(pod)
-                    add(number / pod)
+                    add(num / pod)
                 }
             }
         }
-
-    fun isPrime(number: Int) : Boolean =
-        number > 1 && (factors(number) == mutableSetOf(1, number))
-
-    fun isPerfect(number: Int) : Boolean { // 완전수 = 자기 자신을 제외한 양의 약수를 더했을 때 자기 자신이 되는 양수의 정수
-        return ClassifierAlpha.sum(factors(number)) - number == number
     }
 
-    fun isAbundant(number: Int) : Boolean {
-        return ClassifierAlpha.sum(factors(number)) - number > number
-    }
+    // 완전수 = 자기 자신을 제외한 양의 약수를 더했을 때 자기 자신이 되는 양수의 정수
+    val isPerfect = {num: Int -> sum(factors(num)) - num == num }
 
-    fun isDeficient(number: Int) : Boolean {
-        return ClassifierAlpha.sum(factors(number)) - number < number
-    }
+    val isAbundant = {num: Int -> sum(factors(num)) - num > num }
 
-    fun isSquared(number: Int) : Boolean{
-        (1..number).map {
-            if(it * it == number)
-                return true
-        }
-        return false
-    }
+    val isDeficient = {num: Int -> sum(factors(num)) - num < num }
+
+    val isSquared = {num: Int -> (1..num).any{ it * it == num}}
+
 
     fun getTotalResult(number: Int) : MutableList<String> =
         mutableListOf<String>().apply {

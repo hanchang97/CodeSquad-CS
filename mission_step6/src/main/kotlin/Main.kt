@@ -3,6 +3,8 @@ fun main(args: Array<String>){
 
     val classifier = ClassifierAlpha()
     (1..100).reduce { acc , i -> printResult(i) } //  reduce 특성상 2부터 검사를 하기 위해 1..100 으로 설정
+
+    //println(classifier.isPrime(23))
 }
 
 fun printResult(num:Int): Int{
